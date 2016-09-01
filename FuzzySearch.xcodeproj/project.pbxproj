@@ -13,6 +13,8 @@
 		1F3E07D71D787AF6004744E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3E07D51D787AF6004744E0 /* LaunchScreen.storyboard */; };
 		1F3E07DF1D787C1B004744E0 /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F3E07DE1D787C1B004744E0 /* dictionary.json */; };
 		1F3E07E11D787CB2004744E0 /* WordsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E07E01D787CB2004744E0 /* WordsListTableViewController.swift */; };
+		1F3E07E41D78801E004744E0 /* FileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E07E31D78801E004744E0 /* FileController.swift */; };
+		1F3E07E81D7885EB004744E0 /* dictionary_small.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F3E07E71D7885EB004744E0 /* dictionary_small.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		1F3E07D81D787AF6004744E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F3E07DE1D787C1B004744E0 /* dictionary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dictionary.json; sourceTree = "<group>"; };
 		1F3E07E01D787CB2004744E0 /* WordsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsListTableViewController.swift; sourceTree = "<group>"; };
+		1F3E07E31D78801E004744E0 /* FileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileController.swift; sourceTree = "<group>"; };
+		1F3E07E71D7885EB004744E0 /* dictionary_small.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dictionary_small.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +61,11 @@
 			isa = PBXGroup;
 			children = (
 				1F3E07CC1D787AF6004744E0 /* AppDelegate.swift */,
+				1F3E07E61D788031004744E0 /* OtherController */,
 				1F3E07E21D787CB6004744E0 /* ViewController */,
 				1F3E07D31D787AF6004744E0 /* Assets.xcassets */,
 				1F3E07DE1D787C1B004744E0 /* dictionary.json */,
+				1F3E07E71D7885EB004744E0 /* dictionary_small.json */,
 				1F3E07D81D787AF6004744E0 /* Info.plist */,
 				1F3E07D51D787AF6004744E0 /* LaunchScreen.storyboard */,
 				1F3E07D01D787AF6004744E0 /* Main.storyboard */,
@@ -73,6 +79,14 @@
 				1F3E07E01D787CB2004744E0 /* WordsListTableViewController.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		1F3E07E61D788031004744E0 /* OtherController */ = {
+			isa = PBXGroup;
+			children = (
+				1F3E07E31D78801E004744E0 /* FileController.swift */,
+			);
+			name = OtherController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +149,7 @@
 			files = (
 				1F3E07D71D787AF6004744E0 /* LaunchScreen.storyboard in Resources */,
 				1F3E07DF1D787C1B004744E0 /* dictionary.json in Resources */,
+				1F3E07E81D7885EB004744E0 /* dictionary_small.json in Resources */,
 				1F3E07D41D787AF6004744E0 /* Assets.xcassets in Resources */,
 				1F3E07D21D787AF6004744E0 /* Main.storyboard in Resources */,
 			);
@@ -147,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3E07E41D78801E004744E0 /* FileController.swift in Sources */,
 				1F3E07CD1D787AF6004744E0 /* AppDelegate.swift in Sources */,
 				1F3E07E11D787CB2004744E0 /* WordsListTableViewController.swift in Sources */,
 			);
