@@ -28,6 +28,8 @@ class WordsListTableViewController: UITableViewController, UISearchResultsUpdati
     //==================================================
     
     var searchController: UISearchController?
+    var fuzzySearch = FuzzySearch()
+    let fuzzinessQuality = 0.8
     var wordsArray: [String]?
     
     //==================================================
@@ -89,9 +91,22 @@ class WordsListTableViewController: UITableViewController, UISearchResultsUpdati
             , words = wordsArray
             else { return }
         
-        let filteredWordsArray = Array(Set(words.filter({ $0.containsSearchTerm(searchTermLowercase) })))
+        // All results containing the lowercase search term
+//        let filteredContainsWordsArray = Array(Set(words.filter({ $0.containsSearchTerm(searchTermLowercase) })))
         
-        searchResultsController.wordsArray = filteredWordsArray
+        // Only "fuzzy" results that above a certain quality threshold of matching
+        var filteredFuzzyWordsArray = [String]()
+        for word in words {
+            
+            let matchQuality = Double(fuzzySearch.JaroWinklerDistance(searchTermLowercase, in_s2: word))
+            if matchQuality >= self.fuzzinessQuality {
+                
+                filteredFuzzyWordsArray.append(word)
+            }
+        }
+        
+        // Only using the fuzzy ones
+        searchResultsController.wordsArray = filteredFuzzyWordsArray
         searchResultsController.tableView.reloadData()
     }
     
