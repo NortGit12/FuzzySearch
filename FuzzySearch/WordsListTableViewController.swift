@@ -105,6 +105,8 @@ class WordsListTableViewController: UITableViewController, UISearchResultsUpdati
             }
         }
         
+        filteredFuzzyWordsArray = Array(Set(Array(filteredFuzzyWordsArray)))
+        
         // Only using the fuzzy ones
         searchResultsController.wordsArray = filteredFuzzyWordsArray
         searchResultsController.tableView.reloadData()
