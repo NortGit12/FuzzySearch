@@ -10,13 +10,14 @@ import UIKit
 
 extension String {
     
-    func matchesSearchTerm(term: String) -> Bool {
+    func containsSearchTerm(term: String) -> Bool {
         
-        if self.containsString(term) {
-            return true
-        } else {
-            return false
-        }
+        return self.lowercaseString.containsString(term)
+    }
+    
+    func containsFuzzySearchTerm(term: String) -> Bool {
+        
+        return true
     }
 }
 
@@ -88,7 +89,7 @@ class WordsListTableViewController: UITableViewController, UISearchResultsUpdati
             , words = wordsArray
             else { return }
         
-        let filteredWordsArray = words.filter({ $0.matchesSearchTerm(searchTermLowercase) })
+        let filteredWordsArray = Array(Set(words.filter({ $0.containsSearchTerm(searchTermLowercase) })))
         
         searchResultsController.wordsArray = filteredWordsArray
         searchResultsController.tableView.reloadData()
