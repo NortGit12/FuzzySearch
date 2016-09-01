@@ -23,8 +23,7 @@ class WordsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        FileController.sharedController.parseJSONFileToArrayOfWords("dictionary_small")
-        print("Well?")
+        self.wordsArray = FileController.sharedController.parseJSONFileToArrayOfWords("dictionary_small")
     }
 
     // MARK: - Table view data source
@@ -35,13 +34,16 @@ class WordsListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("wordsListCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        guard let words = wordsArray else { return UITableViewCell() }
+        let word = words[indexPath.row]
+        cell.textLabel?.text = word
 
         return cell
     }
-
+    
     /*
     // MARK: - Navigation
 
