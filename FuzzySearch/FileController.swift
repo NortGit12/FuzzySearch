@@ -31,26 +31,13 @@ class FileController {
                     
                     wordsArray = convertStringDictionaryToWordsArray(jsonResult)
                     
-                    print("\nwordsArray = \(wordsArray)")
+//                    print("\nwordsArray = \(wordsArray)")
                 }
             }
         }
         
         return wordsArray
     }
-    
-//    func parseJSONFile2(filename: String) -> [String : AnyObject]? {
-//        
-//        guard let masterDataURL: NSURL = NSBundle.mainBundle().URLForResource(filename, withExtension: "json")
-//            , jsonData: NSData = NSData(contentsOfURL: masterDataURL)
-//            , jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: ) as? NSDictionary
-//            else {
-//                
-//                NSLog("The file could not be parsed into a dictionary")
-//                return nil
-//            }
-//        
-//    }
     
     func convertStringDictionaryToWordsArray(stringDictionary: [String : AnyObject]) -> [String] {
         

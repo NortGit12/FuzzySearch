@@ -8,12 +8,25 @@
 
 import UIKit
 
-class WordsListTableViewController: UITableViewController {
+extension String {
+    
+    func matchesSearchTerm(term: String) -> Bool {
+        
+        if self.containsString(term) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+class WordsListTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     //==================================================
     // MARK: - Stored Properties
     //==================================================
     
+    var searchController: UISearchController?
     var wordsArray: [String]?
     
     //==================================================
@@ -22,6 +35,8 @@ class WordsListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupSearchController()
 
         self.wordsArray = FileController.sharedController.parseJSONFileToArrayOfWords("dictionary_small")
     }
@@ -42,6 +57,41 @@ class WordsListTableViewController: UITableViewController {
         cell.textLabel?.text = word
 
         return cell
+    }
+    
+    //==================================================
+    // MARK: - SearchController
+    //==================================================
+    
+    func setupSearchController() {
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let resultsController = storyboard.instantiateViewControllerWithIdentifier("searchResultsTableViewController")
+        
+        guard let searchResultsTableViewController = resultsController as? SearchResultsTableViewController else { return }
+        searchResultsTableViewController.sourceTableViewController = self
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController?.searchResultsUpdater = self
+        searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.searchBar.placeholder = "Search words..."
+        searchController?.searchBar.delegate = self
+        searchController?.definesPresentationContext = true
+        tableView.tableHeaderView = searchController?.searchBar
+        
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        guard let searchTermLowercase = searchController.searchBar.text?.lowercaseString
+            , searchResultsController = searchController.searchResultsController as? SearchResultsTableViewController
+            , words = wordsArray
+            else { return }
+        
+        let filteredWordsArray = words.filter({ $0.matchesSearchTerm(searchTermLowercase) })
+        
+        searchResultsController.wordsArray = filteredWordsArray
+        searchResultsController.tableView.reloadData()
     }
     
     /*
